@@ -45,6 +45,9 @@
   <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\local\tyrex\tyrex\1.0.1\jars\tyrex.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\local\jaxen\jaxen\1.1.3\jars\jaxen.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\local\net.sf.ehcache\ehcache-core\2.5.0\jars\ehcache-core.jar" kind="lib"></classpathentry>
+  <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\cache\com.github.twitter\bootstrap\jars\bootstrap-2.0.2.jar" kind="lib"></classpathentry>
+  <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\cache\com.jquery\jquery\jars\jquery-1.7.1.jar" kind="lib"></classpathentry>
+  <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\cache\postgresql\postgresql\jars\postgresql-9.1-901-1.jdbc4.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\local\play\play-test_2.9.1\2.0.2\jars\play-test_2.9.1.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\local\org.specs2\specs2_2.9.1\1.9\jars\specs2_2.9.1.jar" kind="lib"></classpathentry>
   <classpathentry path="C:\devtools\POC\play-2.0.2\framework\..\repository\local\org.specs2\specs2-scalaz-core_2.9.1\6.0.1\jars\specs2-scalaz-core_2.9.1.jar" kind="lib"></classpathentry>
