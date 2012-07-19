@@ -1,5 +1,7 @@
 package controllers;
 
+import models.PageDetails;
+import models.ProfileDetails;
 import models.User;
 import play.cache.Cache;
 import play.mvc.Controller;
@@ -8,7 +10,7 @@ import play.mvc.Result;
 public class Application extends Controller {
   
 	public static Result index() {
-		//PageDetails pageDetails = getPageDetails();
+		PageDetails pageDetails = getPageDetails();
 		 User currentUser=(User) Cache.get("currentUser"); 
 		 /*if(currentUser!=null)
 		  {
@@ -16,10 +18,10 @@ public class Application extends Controller {
 		  }else{
 			  return ok(index.render(pageDetails));
 		  }*/	  
-		 return ok(views.html.index.render("dsad"));
+		 return ok(views.html.index.render(pageDetails));
 	  }
   
-	/*
+
 	
 	public static PageDetails getPageDetails(){
 		PageDetails pageDetails = (PageDetails) Cache.get("pageDetails");
@@ -30,8 +32,8 @@ public class Application extends Controller {
 		 if(currentUser!=null){
 			 pageDetails.currentUserDetails=buildProfileDetails(currentUser);
 		 }
-		 pageDetails.visitCount=Visits.getVisitCount();
-		 pageDetails.membersCount=User.getMembers();
+		// pageDetails.visitCount=Visits.getVisitCount();
+		 //pageDetails.membersCount=User.getMembers();
 		 Cache.set("pageDetails", pageDetails);
 		return pageDetails;
 	}
@@ -39,8 +41,8 @@ public class Application extends Controller {
 	public static ProfileDetails buildProfileDetails(User currentUser){
 		ProfileDetails userDetails= new ProfileDetails();
 		userDetails.user=currentUser;
-		userDetails.posts=Post.getPostByUser(currentUser);
+		//userDetails.posts=Post.getPostByUser(currentUser);
 		return userDetails;
 	}
-  */
+  
 }

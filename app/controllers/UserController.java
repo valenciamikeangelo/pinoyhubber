@@ -10,20 +10,23 @@ import play.mvc.Result;
 
 public class UserController extends Application {
 
-	public static Result displayRegistration() {
-		/*PageDetails pageDetails =  getPageDetails();
-		return ok(createAccount.render(pageDetails));*/
-		return null;
-	  }
+	
 	
 	public static Result createAccount(){
 		Form<User> accountform = form(User.class).bindFromRequest();
-		User account =buildAccount(accountform);
-		account.save();
-		session("user", account.fullname);
-		session("useremail", account.email);
-		Cache.set("currentUser",account);
-		return redirect(routes.Application.index());
+		
+		if(accountform.hasErrors()) {
+		    return badRequest("");
+		} else {
+			//User account =buildAccount(accountform);
+			User account =accountform.get();
+			account.save();
+			Cache.set("currentUser",account);
+			return redirect(routes.Application.index());
+		}
+	
+		
+		
 	}
 	
 	

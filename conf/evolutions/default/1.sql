@@ -14,6 +14,7 @@ create table user (
   company                   varchar(255),
   is_admin                  boolean,
   is_online                 boolean,
+  constraint uq_user_email unique (email),
   constraint pk_user primary key (id))
 ;
 

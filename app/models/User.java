@@ -2,10 +2,12 @@ package models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import play.data.validation.Constraints.Required;
 import play.db.ebean.Model;
 
 
@@ -15,8 +17,12 @@ public class User extends Model {
 	@Id
 	@GeneratedValue
 	public Long id;
+	@Required
+	@Column(unique=true)
 	public String email;
+	@Required
     public String password;
+	@Required
     public String fullname;
     public String nickname;
     public String about;
