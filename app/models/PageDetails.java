@@ -6,4 +6,5 @@ public class PageDetails {
 	public long membersCount;
 	public ProfileDetails currentUserDetails;
 	public PostDetails currentPostDetails;
+	public String pageTitle;
 }

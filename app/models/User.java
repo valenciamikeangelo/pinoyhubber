@@ -16,7 +16,7 @@ public class User extends Model {
 
 	@Id
 	@GeneratedValue
-	public Long id;
+	public Long userId;
 	@Required
 	@Column(unique=true)
 	public String email;

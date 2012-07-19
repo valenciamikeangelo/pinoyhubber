@@ -1,8 +1,153 @@
-@(pageDetails:PageDetails)(header: Html)(sidebarLeft: Html)(sidebarRight: Html)(footer: Html)(content: Html)
+@(pageDetails:PageDetails)(content: Html)
 
+
+@header={
+	<div class="subnav">
+		<ul class="nav nav-pills">
+			<li><a href="#global">Global styles</a></li>
+			<li><a href="#gridSystem">Grid system</a></li>
+			<li><a href="#fluidGridSystem">Fluid grid system</a></li>
+			<li><a href="#gridCustomization">Customizing</a></li>
+			<li><a href="#layouts">Layouts</a></li>
+			<li><a data-toggle="modal" href="#registerModal">Responsive design</a></li>
+			@loginLink
+		</ul>
+	</div>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="./index.html">Bootstrap</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li class=""><a href="./index.html">Overview</a></li>
+						<li class=""><a href="./scaffolding.html">Scaffolding</a></li>
+						<li class=""><a href="./base-css.html">Base CSS</a></li>
+						<li class="active"><a href="./components.html">Components</a>
+						</li>
+						<li class=""><a href="./javascript.html">Javascript
+								plugins</a></li>
+						<li class=""><a href="./less.html">Using LESS</a></li>
+						<li class="divider-vertical"></li>
+						<li class=""><a href="./download.html">Customize</a></li>
+						<li class=""><a href="./examples.html">Examples</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+
+@loginLink={
+      @if(pageDetails.currentUserDetails==null){
+   		<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Log-in</a>
+			<ul class="dropdown-menu explogin_drop">
+				<li >
+					<form action="/Account/login" method="POST">
+						<label>Username</label>
+						<input type="text" class="span3" placeholder="Username" name="username">
+						<label>Password</label>
+						<input type="text" class="span3" placeholder="Password" name="password">
+						<label class="checkbox"><input type="checkbox"> Remember My Password</label>
+						<button type="submit" class="btn">Submit</button>
+						<ul>
+							<li><a href="#"><i class="icon-lock"></i> Forgot your password?</a></li>
+							<li><a href="#"><i class="icon-user"></i> Forgot your username?</a></li>
+							<li><a href="/Account/register"> <i class="icon-check"></i> Create an account </a></li>
+						</ul>
+					</form>
+				</li>
+			</ul>
+		</li>
+		
+}else{
+		<li><a href="/Account/logout">Log out</a></li>
+		<li class="dropdown"><a href="#" class="dropdown-toggle"
+			data-toggle="dropdown">Actions<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">My Profile</a></li>
+				<li><a href="/Account/createPost">Create a Post</a></li>
+				<li><a href="/Account/update">Update Profile</a></li> 
+				<li><a href="#">Create Event</a></li> 
+			</ul>
+		</li>
+		}
+}
+
+
+
+
+@sidebarLeft={
+	<div class="sidebar-inner">
+		<!--Sidebar content-->
+			sidebar left content1
+	</div>
+	<div class="sidebar-inner">
+		<!--Sidebar content-->
+			sidebar left content2
+	</div>
+	<div class="sidebar-inner">
+		<!--Sidebar content-->
+			sidebar left content3
+	</div>
+}
+
+@sidebarRight={
+	<div class="sidebar-inner">
+		<!--Sidebar content-->
+			sidebar right content1
+	</div>
+	<div class="sidebar-inner">
+		<!--Sidebar content-->
+			sidebar right content2
+	</div>
+	<div class="sidebar-inner">
+		<!--Sidebar content-->
+			sidebar right content3
+	</div>
+}
+
+
+@footer={
+
+	<footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">twitter</a> by <a href="http://twitter.com/mdo" target="_blank">mdo</a> and <a href="http://twitter.com/fat" target="_blank">fat</a>.</p>
+        <p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+      </footer>
+}
+
+@modalContent={
+	<div class="modal hide" id="registerModal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">X</button>
+			<h3>Modal header</h3>
+		</div>
+		<div class="modal-body">
+			<form action="/Account/createAccount" method="post">
+				<div class="control-group">
+					<label class="control-label" for="email">Email address <i
+						class="icon-envelope"></i></label> <input name="email" type="text">
+					<label>Password</label><input type="password"
+						placeholder="password" name="password"> <label>Full
+						Name</label><input type="text" placeholder="FirstName" name="fullname">
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+					<button type="submit" class="btn">Create Account</button>
+				</div>
+			</form>
+		</div>
+	</div>
+} 
 
 <!DOCTYPE html>
-
 <html>
 <head>
 <title>title</title>
@@ -23,7 +168,10 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span2 sidebar-outer">@sidebarLeft</div>
-				<div class="span8 main-container-outer">@content</div>
+				<div class="span8 main-container-outer">
+						@content
+						@modalContent 
+				</div>
 				<div class="span2 sidebar-outer">@sidebarRight</div>
 			</div>
 		</div>

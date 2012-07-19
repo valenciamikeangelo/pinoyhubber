@@ -1,0 +1,121 @@
+@(pageDetails:PageDetails,action:String)
+
+
+
+@loginContent={
+<div class="main-container-inner">
+	<div class="row">
+		<div class="span8">
+			<div class="row">
+				<div class="span2 sidebar-outer">@loginContentSidebarMenu</div>
+				<div class="span6 main-container-inner">@profileStatic</div>
+			</div>
+		</div>
+		<div class="span8">
+			@if(action=="home"){
+				@profileHome 
+			}
+			@if(action=="createPost"){
+				@createPost 
+			}
+			@if(action=="viewAllPost"){
+				@viewAllPost 
+			}
+			
+		</div>
+	</div>
+</div>
+}
+
+@loginContentSidebarMenu={
+	<div class="">
+		<ul class="nav nav-pills nav-stacked">
+			<li class=""><a href="#">Colleagues</a></li>
+			<li class=""><a href="/Account/viewAllPost">Post (@pageDetails.currentUserDetails.posts.size())</a></li>
+			<li class=""><a href="#">Articles</a></li>
+			<li class=""><a href="#">Events</a></li>
+		</ul>
+	</div>
+}
+
+@profileStatic={
+	<div class="">
+		<ul class="nav nav-pills nav-stacked">
+			<li class=""><a href="#">Colleagues</a></li>
+			<li class=""><a href="#">Post</a></li>
+			<li class=""><a href="#">Articles</a></li>
+			<li class=""><a href="#">Events</a></li>
+		</ul>
+	</div>
+}
+
+@profileHome={
+	<div class="accordion" id="accordion2">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#accordion2" href="#collapseOne"> Collapsible Group
+					Item #1 </a>
+			</div>
+			<div id="collapseOne" class="accordion-body collapse in">
+				<div class="accordion-inner">c1</div>
+			</div>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse"
+						data-parent="#accordion2" href="#collapseTwo"> Collapsible
+						Group Item #2 </a>
+				</div>
+				<div id="collapseTwo" class="accordion-body collapse">
+					<div class="accordion-inner">c2</div>
+				</div>
+			</div>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse"
+						data-parent="#accordion2" href="#collapseThree"> Collapsible
+						Group Item #3 </a>
+				</div>
+				<div id="collapseThree" class="accordion-body collapse">
+					<div class="accordion-inner">c3</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+} 
+
+@createPost={
+	<div>
+	<h3>Create a Post</h3>
+	  <form action="/Account/submitPost" method="post">
+		<div class="control-group">
+			<label>Title</label><input type="text" placeholder="Title" name="title">
+			<label>Content</label><textarea name="content" ></textarea>
+			<div class="btn-group">
+			<button type="submit" class="btn" >Submit Post</button>
+			<a class="btn" href="/">Cancel</a>
+			</div>
+		</div>
+	</form>
+	</div>
+}
+
+@viewAllPost={
+	<div>
+		@for(post <- pageDetails.currentUserDetails.posts) {
+  			<div class="well">
+  				<a href="#">Title: @post.title</a>
+  				Posted at: @post.postedAt
+  				Comments:
+  				Rate:
+  			</div>
+	} 
+	</div>
+}
+
+
+
+@main(pageDetails){
+
+	@loginContent
+}
