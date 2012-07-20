@@ -12,11 +12,11 @@ import play.db.ebean.Model;
 
 
 @Entity
-public class User extends Model {
+public class Account extends Model {
 
 	@Id
 	@GeneratedValue
-	public Long userId;
+	public Long accountId;
 	@Required
 	@Column(unique=true)
 	public String email;
@@ -30,11 +30,11 @@ public class User extends Model {
     public String company;
     public boolean isAdmin;
     public boolean isOnline;
-    public User(){
+    public Account(){
     	
     }
     
-    public User(String email, String password, String fullname, boolean isAdmin) {
+    public Account(String email, String password, String fullname, boolean isAdmin) {
 		super();
 		this.email = email;
 		this.password = password;
@@ -44,13 +44,13 @@ public class User extends Model {
 
     
     public static long getMembers() {
-		List<User> members =find.all();
+		List<Account> members =find.all();
 		return  members.size();
 	}
 
-    public static User retrieveAccountByUsernameAndPassword(String email, String password) {
+    public static Account retrieveAccountByUsernameAndPassword(String email, String password) {
 		String oql = "email = :email and password= :password";
-    	List<User> members = find.query()
+    	List<Account> members = find.query()
     			.select("*")
     			.where(oql)
     			.setParameter("email", email)
@@ -63,7 +63,7 @@ public class User extends Model {
 		return null;
 	}
     
-	public static Finder<String,User> find = new Finder<String,User>(
-    		String.class, User.class
+	public static Finder<String,Account> find = new Finder<String,Account>(
+    		String.class, Account.class
     	  ); 
 }

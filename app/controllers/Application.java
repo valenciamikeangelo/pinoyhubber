@@ -3,7 +3,7 @@ package controllers;
 import models.PageDetails;
 import models.Post;
 import models.ProfileDetails;
-import models.User;
+import models.Account;
 import play.cache.Cache;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -14,7 +14,7 @@ public class Application extends Controller {
   
 	public static Result index() {
 		PageDetails pageDetails = getPageDetails();
-		 User currentUser=(User) Cache.get("currentUser"); 
+		 Account currentUser=(Account) Cache.get("currentUser"); 
 		if(currentUser!=null)
 		  {
 			  return ok(profile.render(pageDetails,"home")); 
@@ -31,7 +31,7 @@ public class Application extends Controller {
 		 if(pageDetails==null){
 			 pageDetails= new PageDetails();
 		 }
-		 User currentUser=(User) Cache.get("currentUser");
+		 Account currentUser=(Account) Cache.get("currentUser");
 		 if(currentUser!=null){
 			 pageDetails.currentUserDetails=buildProfileDetails(currentUser);
 		 }
@@ -41,7 +41,7 @@ public class Application extends Controller {
 		return pageDetails;
 	}
 	
-	public static ProfileDetails buildProfileDetails(User currentUser){
+	public static ProfileDetails buildProfileDetails(Account currentUser){
 		ProfileDetails userDetails= new ProfileDetails();
 		userDetails.user=currentUser;
 		userDetails.posts=Post.getPostByUser(currentUser);

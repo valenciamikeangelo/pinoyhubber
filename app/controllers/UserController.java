@@ -5,7 +5,7 @@ import java.util.Map;
 import models.LoginDetails;
 import models.PageDetails;
 import models.Post;
-import models.User;
+import models.Account;
 import play.cache.Cache;
 import play.data.Form;
 import play.mvc.Result;
@@ -16,12 +16,12 @@ public class UserController extends Application {
 	
 	
 	public static Result createAccount(){
-		Form<User> accountform = form(User.class).bindFromRequest();
+		Form<Account> accountform = form(Account.class).bindFromRequest();
 		if(accountform.hasErrors()) {
 		    return badRequest("");
 		} else {
 			//User account =buildAccount(accountform);
-			User account =accountform.get();
+			Account account =accountform.get();
 			account.save();
 			Cache.set("currentUser",account);
 			return redirect(routes.Application.index());
@@ -49,18 +49,16 @@ public class UserController extends Application {
 	
 	private static Post buildPost(Form<Post> form){
 		Map<String,String> values= form.data();
-		 User currentUser=(User) Cache.get("currentUser"); 
+		 Account currentUser=(Account) Cache.get("currentUser"); 
 		Post post= new Post(currentUser,values.get("title"),values.get("content"));
 		return post;
 	}
 	
 	public static Result login(){
 		Form<LoginDetails> accountform = form(LoginDetails.class).bindFromRequest();
-		User loginUser= User.retrieveAccountByUsernameAndPassword(accountform.data().get("username"), accountform.data().get("password"));
+		Account loginUser= Account.retrieveAccountByUsernameAndPassword(accountform.data().get("username"), accountform.data().get("password"));
 		if(loginUser!=null){
-        	session("user", loginUser.fullname);
-    		session("useremail", loginUser.email);
-    		Cache.set("currentUser",loginUser);
+        	Cache.set("currentUser",loginUser);
     	}
        
 		return redirect(routes.Application.index());
@@ -68,16 +66,17 @@ public class UserController extends Application {
 	
 	
 	public static Result logout(){
-		session().remove("user");
 		Cache.set("currentUser", null, 0);
+		PageDetails pageDetails = getPageDetails();
+		pageDetails.currentUserDetails=null;
         return redirect(routes.Application.index());
 	}
 	
 	
 	
-	private static User buildAccount(Form<User> form){
+	private static Account buildAccount(Form<Account> form){
 		Map<String,String> values= form.data();
-		User account = new User();
+		Account account = new Account();
 		account.fullname=values.get("firstname");
 		account.email=values.get("email");
 		account.password=values.get("password");

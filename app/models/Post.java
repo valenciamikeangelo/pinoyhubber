@@ -33,9 +33,9 @@ public class Post extends Model {
 	public String content;
 
 	@ManyToOne
-	public User author;
+	public Account author;
 
-	public Post(User author, String title, String content) {
+	public Post(Account author, String title, String content) {
 		this.author = author;
 		this.title = title;
 		this.content = content;
@@ -43,12 +43,12 @@ public class Post extends Model {
 	}
 
 	
-	public static List<Post> getPostByUser(User user){
+	public static List<Post> getPostByUser(Account user){
 		String oql = "author = :authorId";
     	List<Post> posts = find.query()
     			.select("*")
     			.where(oql)
-    			.setParameter("authorId", user.userId)
+    			.setParameter("authorId", user.accountId)
     			.findList();
 		return posts;
 		
