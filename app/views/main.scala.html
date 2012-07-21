@@ -1,51 +1,80 @@
-@(pageDetails:PageDetails)(content: Html)
-
+@(pageDetails:PageDetails)(content: Html) 
 
 @header={
-	<div class="subnav">
-		<ul class="nav nav-pills">
-			<li><a href="#global">Global styles</a></li>
-			<li><a href="#gridSystem">Grid system</a></li>
-			<li><a href="#fluidGridSystem">Fluid grid system</a></li>
-			<li><a href="#gridCustomization">Customizing</a></li>
-			<li><a href="#layouts">Layouts</a></li>
-			<li><a data-toggle="modal" href="#registerModal">Responsive design</a></li>
-			@loginLink
-		</ul>
-	</div>
-	<div class="navbar">
-		<div class="navbar-inner">
-			<div class="container">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="brand" href="./index.html">Bootstrap</a>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li class=""><a href="./index.html">Overview</a></li>
-						<li class=""><a href="./scaffolding.html">Scaffolding</a></li>
-						<li class=""><a href="./base-css.html">Base CSS</a></li>
-						<li class="active"><a href="./components.html">Components</a>
-						</li>
-						<li class=""><a href="./javascript.html">Javascript
-								plugins</a></li>
-						<li class=""><a href="./less.html">Using LESS</a></li>
-						<li class="divider-vertical"></li>
-						<li class=""><a href="./download.html">Customize</a></li>
-						<li class=""><a href="./examples.html">Examples</a></li>
-					</ul>
-				</div>
-			</div>
+
+<div class="navbar">
+	<div class="navbar navbar-fixed-top mainHeader">
+		<div class="container">
+			<a class="brand" href="#">Pinoy IT Hubber</a>
+			<ul class="nav nav-pills">
+				<li><a href="#"><i class="icon-home"></i>Home</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Send Feedback</a></li>
+			</ul>
+			<form class="navbar-search pull-left">
+				<input type="text" class="search-query" placeholder="Search">
+			</form>
+			<ul class="nav nav-pills pull-right">
+				<li><a data-toggle="modal" href="#registerModal">Register</a></li>
+				@loginLink
+			</ul>
 		</div>
 	</div>
-}
+</div>
+<div class="subnav subnav-fixed center">
+    	<ul class="nav nav-pills">
+    			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Programming<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Java</a></li>
+							<li><a href="#">Scala</a></li>
+							<li><a href="#">Grails</a></li>
+						</ul>
+					</li>
+					<li class="divider-vertical"></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Frameworks<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Spring</a></li>
+							<li><a href="#">Play</a></li>
+						</ul>
+					</li>
+					<li class="divider-vertical"></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Methodology<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Agile</a></li>
+							<li><a href="#">Lean</a></li>
+							<li><a href="#">Waterfall</a></li>
+						</ul>
+					</li>
+    				<li class="divider-vertical"></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Web<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">HTML5</a></li>
+							<li><a href="#">Javascript</a></li>
+							<li><a href="#">JQuery</a></li>
+						</ul>
+					</li>
+    				<li class="divider-vertical"></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Mobile<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Android</a></li>
+							<li><a href="#">HTML5</a></li>
+						</ul>
+					</li>
+    			
+				
+				 <li class="divider-vertical"></li>
+				 <li><a href="#">Best Pratices</a></li>
+				  <li class="divider-vertical"></li>
+				 <li><a href="#">Tutorials</a></li>
+			</ul>
+			
+	</div>
+} 
 
+@loginLink={ 
 
-@loginLink={
-      @if(pageDetails.currentUserDetails==null){
-   		<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Log-in</a>
+	@if(pageDetails.currentUserDetails==null){
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Log-in</a>
 			<ul class="dropdown-menu explogin_drop">
 				<li >
 					<form action="/Account/login" method="POST">
@@ -160,10 +189,15 @@
         <script src="@routes.Assets.at("javascripts/bootstrap-modal.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/customer.min.js")" type="text/javascript"></script>
 </head>
-<body>
+<body class="body-color">
 	<section>
 		<div id="header">@header</div>
 	</section>
+    <div class="container container-color">
+      <div class="top-spacer">
+      </div>
+      
+	
 	<section>
 		<div class="container-fluid">
 			<div class="row-fluid">
@@ -179,5 +213,6 @@
 	<section>
 		<div id="footer">@footer</div>
 	</section>
+	</div>
 </body>
 </html>
