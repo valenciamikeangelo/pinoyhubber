@@ -19,6 +19,7 @@ public class Application extends Controller {
 		  {
 			  return ok(profile.render(pageDetails,"home")); 
 		  }else{
+			  pageDetails.pageTitle="Welcome to Pinoy IT Hubber";
 			  return ok(index.render(pageDetails));
 		  }	  
 		
