@@ -15,7 +15,15 @@
 				<input type="text" class="search-query" placeholder="Search">
 			</form>
 			<ul class="nav nav-pills pull-right">
-				<li><a data-toggle="modal" href="#registerModal">Register</a></li>
+				<li><a data-toggle="modal" href="#registerModal"><i class="icon-user"></i>Register</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown"><i class="icon-pencil"></i>Create<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Post</a></li>
+						<li><a href="#">Article</a></li>
+						<li><a href="#">Event</a></li> 
+					</ul>
+				</li>
 				@loginLink
 			</ul>
 		</div>
@@ -74,22 +82,26 @@
 @loginLink={ 
 
 	@if(pageDetails.currentUserDetails==null){
-<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Log-in</a>
+<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-check"></i>Log-in</a>
 			<ul class="dropdown-menu explogin_drop">
 				<li >
-					<form action="/Account/login" method="POST">
-						<label>Username</label>
-						<input type="text" class="span3" placeholder="Username" name="username">
-						<label>Password</label>
-						<input type="text" class="span3" placeholder="Password" name="password">
-						<label class="checkbox"><input type="checkbox"> Remember My Password</label>
-						<button type="submit" class="btn">Submit</button>
-						<ul>
-							<li><a href="#"><i class="icon-lock"></i> Forgot your password?</a></li>
-							<li><a href="#"><i class="icon-user"></i> Forgot your username?</a></li>
-							<li><a href="/Account/register"> <i class="icon-check"></i> Create an account </a></li>
-						</ul>
+				   <div class="box-layout">
+					<form action="/Account/login" method="POST" class="form-horizontal">
+						<div class="control-group">
+							<label class="pull-left" for="username">Username</label> 
+							<input type="text" class="span3" placeholder="Username" name="username">
+							<label class="pull-left" for="password">Password</label> 
+							<input type="text" class="span3" placeholder="Password" name="password">
+							<label class="checkbox"><input type="checkbox"> Remember My Password</label>
+							<button type="submit" class="btn btn-primary">Login Now</button>
+							<ul>
+								<li><a href="#"><i class="icon-question-sign"></i> Forgot your password?</a></li>
+								<li><a href="#"><i class="icon-question-sign"></i> Forgot your username?</a></li>
+								<li><a href="/Account/register"> <i class="icon-pencil"></i> Create an account </a></li>
+							</ul>
+						</div>
 					</form>
+					</div>
 				</li>
 			</ul>
 		</li>
@@ -219,8 +231,8 @@
 @modalContent={
 	<div class="modal hide" id="registerModal">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">X</button>
-			<h3>Modal header</h3>
+			<button type="button" class="close" data-dismiss="modal">x</button>
+			<h3>Create Pinoy IT Hubber account</h3>
 		</div>
 		<div class="modal-body">
 			<form action="/Account/createAccount" method="post">
