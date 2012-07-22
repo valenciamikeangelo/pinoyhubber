@@ -6,40 +6,31 @@ import models.Account;
 import models.LoginDetails;
 import models.PageDetails;
 import models.Post;
-
-import org.codehaus.jackson.JsonNode;
-
 import play.cache.Cache;
 import play.data.Form;
-import play.libs.F.Callback;
 import play.mvc.Result;
-import play.mvc.WebSocket;
+import views.html.createAccount;
 import views.html.profile;
 
 public class UserController extends Application {
+	
+	
+	public static Result displayRegistration() {
+		PageDetails pageDetails =  getPageDetails();
+		return ok(createAccount.render(pageDetails));
+	  }
+	
 
-	public static WebSocket<JsonNode> createAccount() {
-		
-				
-		return new WebSocket<JsonNode>() {
-			@Override
-			public void onReady(play.mvc.WebSocket.In<JsonNode> in,
-					play.mvc.WebSocket.Out<JsonNode> out) {
-
-				in.onMessage(new Callback<JsonNode>() {
-					public void invoke(JsonNode event) {
-					   
-												
-						System.out.println("event" +event.get(1).get("value").asText());
-						System.out.println("fields" +event.toString());
-						
-											
-					}
-				});
-			}
-		};
+	public static Result createAccount(){
+		Form<Account> accountform = form(Account.class).bindFromRequest();
+		Account account =buildAccount(accountform);
+		account.save();
+		Cache.set("currentUser",account);
+		return redirect(routes.Application.index());
 	}
-
+	
+	
+	
 	public static Result displayCreatePost() {
 		PageDetails pageDetails = getPageDetails();
 		return ok(profile.render(pageDetails, "createPost"));

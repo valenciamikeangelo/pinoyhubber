@@ -1,0 +1,38 @@
+@(pageDetails:PageDetails)
+
+@main(pageDetails){
+
+<div class="box-layout">
+	<form action="/Account/createAccount" method="post">
+		<div class="modal-header">
+			<h3>Create Pinoy IT Hubber account</h3>
+		</div>
+		<div class="modal-body">
+
+			<div class="control-group">
+				<label class="control-label" for="email">Email address <i
+					class="icon-envelope"></i></label> <input name="email" type="text">
+				<label class="control-label" for="password">Password</label><input
+					type="password" placeholder="password" name="password"> <label
+					class="control-label" for="fullname">Full Name</label><input
+					type="text" placeholder="fullname" name="fullname"> <label
+					class="control-label" for="nickname">NickName</label><input
+					type="text" placeholder="nickname" name="nickname"> <label
+					class="control-label" for="company">Company</label><input
+					type="text" placeholder="company" name="company"> <label
+					class="control-label" for="role">Role</label><input type="text"
+					placeholder="role" name="role"> <label
+					class="control-label" for="about">About</label>
+				<textarea rows="10" cols="10" name="about"></textarea>
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<a class="btn" href="/">Cancel</a>
+			<button type="submit" class="btn">Create Account</button>
+		</div>
+	</form>
+</div>
+
+
+}

@@ -4,7 +4,8 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /Account/createAccount      controllers.UserController.createAccount()
+GET     /Account/register           controllers.UserController.displayRegistration()
+POST    /Account/createAccount      controllers.UserController.createAccount()
 GET     /Account/createPost         controllers.UserController.displayCreatePost()
 POST    /Account/submitPost         controllers.UserController.submitPost()
 GET     /Account/viewAllPost        controllers.UserController.viewAllPost()
